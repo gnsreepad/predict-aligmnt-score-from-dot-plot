@@ -29,7 +29,7 @@ def mutate_sequence(seq, mutation_rate):
         if random.random() < mutation_rate:
             mutation_type = random.choice(['sub', 'del', 'ins'])
             if mutation_type == 'sub':
-                seq[i] = random.choice([b for b in 'ACGT' if b != seq[i]])
+                seq[i] = random.choice([x for x in 'ACGT' if x != seq[i]])
             elif mutation_type == 'del' and i < len(seq) - 1:
                 seq[i] = ''
             elif mutation_type == 'ins':
