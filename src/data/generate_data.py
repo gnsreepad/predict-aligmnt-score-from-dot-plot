@@ -55,6 +55,15 @@ def mutate_sequence(seq, mutation_rate):
 def compute_alignment_score(s1, s2):
     return aligner.score(s1, s2)
 
+
+# Custom k-mer alignment score function
+# This function counts the number of matching k-mers between two sequences.
+# It can be used to compute a similarity score based on k-mers.
+def compute_kmer_alignment_score(s1, s2, k=3):
+    max_i = min(len(s1), len(s2)) - k + 1
+    score = sum(1 for i in range(max_i) if s1[i:i+k] == s2[i:i+k])
+    return score
+
 def compute_dotplot(s1, s2, k=3):
     dotplot = np.zeros((len(s1) - k + 1, len(s2) - k + 1), dtype=np.uint8)
     for i in range(len(s1) - k + 1):
@@ -77,6 +86,7 @@ for _ in range(NUM_PAIRS):
     mutation_rate = random.choice(MUTATION_RATES)
     mutated_seq = mutate_sequence(base_seq, mutation_rate)
     score = compute_alignment_score(base_seq, mutated_seq)
+    # score = compute_kmer_alignment_score(base_seq, mutated_seq)
     dot = compute_dotplot(base_seq, mutated_seq)
     
     pair_id = f"{len(data):04d}"
