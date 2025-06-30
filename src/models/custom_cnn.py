@@ -12,7 +12,7 @@ from torch.optim import Adam
 # -----------------------
 # CONFIGURATION
 # -----------------------
-DATA_DIR = "data_dotplots"
+DATA_DIR = "data_dotplots/metadata"
 TRAIN_JSON = os.path.join(DATA_DIR, "train.json")
 VAL_JSON = os.path.join(DATA_DIR, "val.json")
 TEST_JSON = os.path.join(DATA_DIR, "test.json")
@@ -122,7 +122,7 @@ def train_model():
               f"Val Loss: {val_loss/len(val_loader.dataset):.4f}")
 
     # Save model
-    torch.save(model.state_dict(), "dotplot_cnn_regressor.pth")
+    torch.save(model.state_dict(), "model/dotplot_cnn_regressor.pth")
     print("✅ Model saved as dotplot_cnn_regressor.pth")
 
     # Final test evaluation
