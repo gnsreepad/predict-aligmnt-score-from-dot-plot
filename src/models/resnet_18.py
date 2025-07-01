@@ -12,12 +12,12 @@ from torch.optim import Adam
 # -----------------------
 # CONFIGURATION
 # -----------------------
-DATA_DIR = "data_dotplots"
+DATA_DIR = "data_dotplots/metadata"
 TRAIN_JSON = os.path.join(DATA_DIR, "train.json")
 VAL_JSON = os.path.join(DATA_DIR, "val.json")
 TEST_JSON = os.path.join(DATA_DIR, "test.json")
 BATCH_SIZE = 32
-EPOCHS = 20
+EPOCHS = 5
 LR = 1e-3
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SEED = 42
@@ -77,6 +77,7 @@ def train_model():
     optimizer = Adam(model.parameters(), lr=LR)
 
     for epoch in range(EPOCHS):
+        print(f"Epoch {epoch+1}/{EPOCHS}")
         model.train()
         train_loss = 0
         for x, y in train_loader:
@@ -101,7 +102,7 @@ def train_model():
               f"Val Loss: {val_loss/len(val_loader.dataset):.4f}")
 
     torch.save(model.state_dict(), "resnet18_dotplot_regressor.pth")
-    print("✅ Model saved as resnet18_dotplot_regressor.pth")
+    print("Model saved as resnet18_dotplot_regressor.pth")
 
     test_model(model, test_loader, loss_fn)
 
@@ -121,7 +122,7 @@ def test_model(model, test_loader, loss_fn):
             all_preds.extend(pred.cpu().numpy())
             all_targets.extend(y.cpu().numpy())
 
-    print(f"📊 Final Test MSE: {test_loss / len(test_loader.dataset):.4f}")
+    print(f"Final Test MSE: {test_loss / len(test_loader.dataset):.4f}")
 
 # -----------------------
 # MAIN
