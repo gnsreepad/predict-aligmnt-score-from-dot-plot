@@ -13,7 +13,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # CONFIGURATION
 # -----------------------
 TEST_JSON = "data_dotplots/metadata/test.json"
-MODEL_PATH = "model/dotplot_cnn_regressor.pth"
+MODEL_PATH = "model/custom_cnn_regressor.pth"
 BATCH_SIZE = 32
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -123,7 +123,7 @@ def evaluate_model():
     plt.title("Predicted vs True Alignment Scores")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("model/test_scatter_eval.png")
+    plt.savefig("model/test_custom_cnn_scatter_eval.png")
     plt.show()
 
 # -----------------------

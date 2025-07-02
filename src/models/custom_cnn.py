@@ -139,7 +139,7 @@ def train_model():
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), "model/dotplot_cnn_regressor.pth")
+            torch.save(model.state_dict(), "model/custom_cnn_regressor.pth")
             print("Model saved with improved validation loss")
             patience_counter = 0
         else:
@@ -154,7 +154,7 @@ def train_model():
 # TEST LOOP
 # -----------------------
 def test_model(model, test_loader, loss_fn):
-    model.load_state_dict(torch.load("model/dotplot_cnn_regressor.pth"))
+    model.load_state_dict(torch.load("model/custom_cnn_regressor.pth"))
     model.eval()
     test_loss = 0
     all_preds = []
@@ -177,7 +177,7 @@ def test_model(model, test_loader, loss_fn):
     plt.title('Predicted vs True Scores')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("model/test_predictions_scatter.png")
+    plt.savefig("model/test_custom_cnn_predictions_scatter.png")
     plt.show()
 
 # -----------------------
