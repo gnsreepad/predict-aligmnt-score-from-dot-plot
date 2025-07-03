@@ -110,6 +110,9 @@ def train_model():
     best_val_loss = float('inf')
     patience_counter = 0
 
+    train_losses = []
+    val_losses = []
+
     for epoch in range(EPOCHS):
         model.train()
         train_loss = 0
@@ -135,6 +138,9 @@ def train_model():
         val_loss /= len(val_loader.dataset)
         scheduler.step(val_loss)
 
+        train_losses.append(train_loss)
+        val_losses.append(val_loss)
+
         print(f"Epoch {epoch+1}/{EPOCHS} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f}")
 
         if val_loss < best_val_loss:
@@ -148,8 +154,20 @@ def train_model():
                 print("Early stopping triggered.")
                 break
 
-    test_model(model, test_loader, mse_loss)
+    # Plot training and validation loss
+    plt.figure(figsize=(8, 5))
+    plt.plot(train_losses, label="Train Loss", marker='o')
+    plt.plot(val_losses, label="Validation Loss", marker='s')
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("Training and Validation Loss over Epochs")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig("model/loss_curve.png")
+    plt.show()
 
+    test_model(model, test_loader, mse_loss)
 # -----------------------
 # TEST LOOP
 # -----------------------

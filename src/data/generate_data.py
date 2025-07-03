@@ -11,7 +11,7 @@ from Bio import Align
 # --- CONFIGURATION ---
 SEQ_LENGTH = 128
 TARGET_PAIRS_PER_BIN = 1000   # Max samples per bin
-SCORE_BINS = list(range(40, 121, 10))  # 40-50, 50-60, ..., 110-120
+SCORE_BINS = list(range(40, 121, 10))  # 40-50, 50-60, ..., 110-120, 120-130
 MUTATION_RATES = [0.09, 0.2, 0.3, 0.45, 0.6, 0.75, 0.9]
 TRAIN_RATIO = 0.67
 VAL_RATIO = 0.17

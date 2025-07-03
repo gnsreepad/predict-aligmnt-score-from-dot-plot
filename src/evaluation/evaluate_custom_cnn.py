@@ -116,12 +116,13 @@ def evaluate_model():
 
     # Scatter Plot
     plt.figure(figsize=(6, 6))
-    plt.scatter(y_true, y_pred, alpha=0.6, edgecolors='k')
-    plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--')
+    plt.scatter(y_true, y_pred, alpha=0.6, edgecolors='k', label="Predictions")
+    plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--', label="Ideal (y = x)")
     plt.xlabel("True Alignment Score")
     plt.ylabel("Predicted Score")
     plt.title("Predicted vs True Alignment Scores")
     plt.grid(True)
+    plt.legend()
     plt.tight_layout()
     plt.savefig("model/test_custom_cnn_scatter_eval.png")
     plt.show()
