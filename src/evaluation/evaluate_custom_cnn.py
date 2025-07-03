@@ -108,7 +108,7 @@ def evaluate_model():
     rmse = np.sqrt(mse)
     r2 = r2_score(y_true, y_pred)
 
-    print("\n📊 Test Performance:")
+    print("\nTest Performance:")
     print(f"MAE:   {mae:.4f}")
     print(f"MSE:   {mse:.4f}")
     print(f"RMSE:  {rmse:.4f}")
